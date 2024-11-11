@@ -1,6 +1,4 @@
-import time
 import pandas as pd
-from datetime import date, datetime
 from urllib.parse import quote
 
  
@@ -21,12 +19,8 @@ def send_messages_from_excel(file_path):
         for index, row in df.iterrows():
             name = str(row['Usuário - Nome']).split()[0].title()
             phone_number = str(row['Usuário - Telefone'])
-            unid = str(row['Unidade'])
-            hora = datetime.strptime(row['Horário Início'], '%H:%M:%S')
 
-            horario = hora.strftime('%H:%M')
-
-            message = f"Bom dia! Tudo bem, {name}? Nós da ADE SAMPA estamos entrando em contato para confirmar seu agendamento na {unid}. Tudo certo para Segunda às {horario}? Para mais informações sobre o projeto Sampa Cast: https://adesampa.com.br/sampacast/"
+            message = f"Bom dia! Tudo bem, {name}? Nós da ADE SAMPA estamos entrando em contato para cancelar sua agenda de Segunda feira. Devido ao feriado, foi estipulado ponto facultativo para as unidades onde se encontram as unidades Sampa Cast. Sendo assim, não conseguimos estipular uma data de reagendamento. Lamentamos e esperamos você em uma outra oportunidade!\nPara mais informações sobre o projeto Sampa Cast: https://adesampa.com.br/sampacast/"
 
             send_whatsapp_message(phone_number, message)
 
